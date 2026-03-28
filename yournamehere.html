@@ -1,0 +1,63 @@
+<!--
+    HOW TO USE:
+        Rename the file to <your channel's name>.html, then add it to your OBS/SLOBS
+        Profit?
+
+    This Text-to-speech browser source was written by mbrine
+    Licence BS and shenanigans aside, just do what ya want with it lol
+    I made this for a friend, then decided to send it to more friends,
+    then realised I should probably make it more user-friendly
+
+    Anyways yay a TTS message reader contained in one HTML file. Enjoy.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
+    <script>
+        // The volume of the TTS voices
+        const volume = 0.75
+        const allCapsVolume = 0.80
+
+        //Users ignored by TTS, make sure it's LOWERCASE
+        const IgnoredUsers = [
+            "fossabot",
+            "streamelements",
+            "nightbot",
+            "commanderroot",
+            "soundalerts",
+            "wizebot",
+            "moobot",
+            "sery_bot",
+            "blerp",
+            "frostytoolsdotcom",
+            "niftehbot",
+            "mouseprower",
+            "tangiabot"
+        ]
+
+        // TTS Nicknames
+        const TTSNicknames = {
+             "mbrine": "meme brine",             
+        };
+
+        // Set this to true to make word replacement INCLUDE parts of words. 
+        // e.g. microwave microwaved -> meecrowahvey meecrowahveyd
+        // If set to false, it will only replace if the WHOLE word matches.
+        // e.g. microwave microwaved -> meecrowahvey microwaved
+        const AggressiveWordReplace = false;         
+        const ReplaceWords = new Map([
+            ["microwave", "meecrowahvey"],          // Left here as an example
+            //["word","replacement"]
+        ]);
+
+        // Supported languages for detection
+        const languages = ["en"];
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/mbrine-mbusiness/TTS_Overlay/tts.js"></script>
+</body>
+</html>
