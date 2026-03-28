@@ -1,3 +1,4 @@
+
 <!--
     HOW TO USE:
         Rename the file to <your channel's name>.html, then add it to your OBS/SLOBS
@@ -19,11 +20,17 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
     <script>
+        ///////////////////////////////////
+        ///                             ///
+        ///     MAIN SETTINGS BELOW     ///
+        ///                             ///
+        ///////////////////////////////////
         // The volume of the TTS voices
         const volume = 0.75
         const allCapsVolume = 0.80
 
-        //Users ignored by TTS, make sure it's LOWERCASE
+        //  Users ignored by TTS, make sure it's LOWERCASE
+        // Some users have already been added, add more as you see fit
         const IgnoredUsers = [
             "fossabot",
             "streamelements",
@@ -42,21 +49,52 @@
 
         // TTS Nicknames
         const TTSNicknames = {
-             "mbrine": "meme brine",             
+             //"name": "replacement",           // This is an example of a user nickname             
         };
 
         // Set this to true to make word replacement INCLUDE parts of words. 
-        // e.g. microwave microwaved -> meecrowahvey meecrowahveyd
+        // e.g. word words -> replacement replacements
         // If set to false, it will only replace if the WHOLE word matches.
-        // e.g. microwave microwaved -> meecrowahvey microwaved
+        // e.g. word words -> replacement words
         const AggressiveWordReplace = false;         
         const ReplaceWords = new Map([
-            ["microwave", "meecrowahvey"],          // Left here as an example
-            //["word","replacement"]
+            //["word","replacement"],            // This is an example of the word replacement 
         ]);
 
         // Supported languages for detection
         const languages = ["en"];
+    </script>
+    <script>
+        ///////////////////////////////////////
+        ///                                 ///
+        ///     ADVANCED SETTINGS BELOW     ///
+        ///                                 ///
+        ///////////////////////////////////////
+
+        // These characters are removed from the message. Prevents TTS from reading out annoying characters like underscores in usernames
+        const RemoveChars = [
+            '_',
+        ]
+
+        // Characters that can be read out by TTS, messages that do not contain these will be ignored
+        // Now distinguished by language, needs to match the language codes above
+        const ReadableCharacters = {
+            "en": [
+                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+            ]
+        };
+
+        // TTS adds a space around these characters
+        // Example 123 -> 1 2 3
+        const AddSpaceChars = [
+            '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+        ]
+
+        // TTS adds a period around these characters
+        // Example 1 -> .1.
+        const AddPeriodChars = [
+        ]
     </script>
     <script src="https://cdn.jsdelivr.net/gh/mbrine-mbusiness/TTS_Overlay/tts.js"></script>
 </body>

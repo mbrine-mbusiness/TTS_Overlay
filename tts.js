@@ -115,30 +115,6 @@
         // Username of last chatter
         var previousName = "";
 
-        // These characters are removed from the message
-        const RemoveChars = [
-            '_',
-        ]
-
-        // Characters that can be read out by TTS, messages that do not contain these will be ignored
-        // Now distinguished by language
-        const ReadableCharacters = {
-            "en": [
-                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-                '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-            ]
-        };
-
-        // TTS adds a space around these characters
-        // (So stuff like 123 are read as "one two three" instead of "one hundred twenty three")
-        const AddSpaceChars = [
-            '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-        ]
-
-        // TTS adds a period around these characters
-        const AddPeriodChars = [
-        ]
-
         // This function
         msg.addEventListener("end", (event) => {
             if (autoTTS) {
@@ -407,14 +383,19 @@
             }
 
             // Add periods
-            for (let i = 0; i < AddPeriodChars.length; ++i) {
-                output = output.replaceAll(AddPeriodChars[i], '.' + AddPeriodChars[i] + '.');
+            if(AddPeriodChars)
+            {            
+                for (let i = 0; i < AddPeriodChars.length; ++i) {
+                    output = output.replaceAll(AddPeriodChars[i], '.' + AddPeriodChars[i] + '.');
+                }
+            } 
+            if(AddSpaceChars)
+            {            
+                // Add spaces
+                for (let i = 0; i < AddSpaceChars.length; ++i) {
+                    output = output.replaceAll(AddSpaceChars[i], ' ' + AddSpaceChars[i]);
+                }
             }
-            // Add spaces
-            for (let i = 0; i < AddSpaceChars.length; ++i) {
-                output = output.replaceAll(AddSpaceChars[i], ' ' + AddSpaceChars[i]);
-            }
-
 
             return output;
         }
